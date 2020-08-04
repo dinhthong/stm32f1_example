@@ -1,0 +1,12 @@
+#ifndef __DELAY_H
+#define __DELAY_H 			   
+#include "stm32f10x.h"
+
+//void delay_init(u8 SYSCLK);
+void delay_ms(uint32_t ms)
+void delay_us(uint32_t us)
+//void delay(u32 x);
+
+#endif
+
+//------------------End of File----------------------------
