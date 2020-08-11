@@ -48,9 +48,9 @@ int main(void)
   {
 		//temperature range: -50 to 200
 	//	printf("Nhiet do:\n\r aa");
-		GPIO_SetBits(GPIOC, GPIO_Pin_13);
+		GPIO_SetBits(GPIOB, GPIO_Pin_12);
 		delay_ms(1000);
-		GPIO_ResetBits(GPIOC, GPIO_Pin_13);
+		GPIO_ResetBits(GPIOB, GPIO_Pin_12);
 		delay_ms(1000);
 	//	MPU6050_Dataanl();
 	//	delay_ms(4);
