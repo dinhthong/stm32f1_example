@@ -1,7 +1,7 @@
 /*
 	On-board STM32F103C8T6 LED toggle
 */
-#define BLUE_PILL 1
+#define BLUE_PILL 0
 #include "stm32f10x.h"
 #include "common.h"
 

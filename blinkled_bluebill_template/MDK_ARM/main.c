@@ -53,12 +53,7 @@ int main(void)
 	
 	TIM_OC1Init(TIM2, &TIM_OCInitStructure);
 	TIM_OC1PreloadConfig(TIM2, TIM_OCPreload_Enable);
-//	TIM_OC2Init(TIM2, &TIM_OCInitStructure);
-//	TIM_OC2PreloadConfig(TIM2, TIM_OCPreload_Enable);
-//	TIM_OC3Init(TIM2, &TIM_OCInitStructure);
-//	TIM_OC3PreloadConfig(TIM2, TIM_OCPreload_Enable);
-//	TIM_OC4Init(TIM2, &TIM_OCInitStructure);
-//	TIM_OC4PreloadConfig(TIM2, TIM_OCPreload_Enable);
+
 	
 	TIM_ARRPreloadConfig(TIM2, ENABLE);
 	TIM_Cmd(TIM2, ENABLE);
