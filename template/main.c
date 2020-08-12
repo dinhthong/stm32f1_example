@@ -1,6 +1,7 @@
 /*
-On-board STM32F103C8T6 LED toggle
+	On-board STM32F103C8T6 LED toggle
 */
+#define BLUE_PILL 1
 #include "stm32f10x.h"
 #include "common.h"
 
@@ -23,37 +24,34 @@ int main(void)
 //  SysTick_Config(SystemCoreClock/1000000);
 	delay_init(72);
 //	USART_Configuration();
+	#if (BLUE_PILL)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+	#else
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
+	#endif
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	#if (BLUE_PILL)
   GPIO_Init(GPIOC, &GPIO_InitStructure);
-	// init imu
-//	
-//	GPIO_InitTypeDef  GPIO_InitStructure; 
-// 
-//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);  //Ê¹ÄÜGPIOBÊ±ÖÓ
-//  
-//	GPIO_InitStructure.GPIO_Pin =  SCL_PIN;
-//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;  
-//  GPIO_Init(GPIOB, &GPIO_InitStructure);
+	#else
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	#endif
 
-//  GPIO_InitStructure.GPIO_Pin =  SDA_PIN;
-//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
-//  GPIO_Init(GPIOB, &GPIO_InitStructure);
-//	InitMPU6050();
   while (1)
-  {
-		//temperature range: -50 to 200
-	//	printf("Nhiet do:\n\r aa");
+  {	
+		#if (BLUE_PILL)
+		GPIO_SetBits(GPIOC, GPIO_Pin_13);
+		delay_ms(1000);
+		GPIO_ResetBits(GPIOC, GPIO_Pin_13);
+		delay_ms(1000);
+		#else
 		GPIO_SetBits(GPIOB, GPIO_Pin_12);
 		delay_ms(1000);
 		GPIO_ResetBits(GPIOB, GPIO_Pin_12);
 		delay_ms(1000);
-	//	MPU6050_Dataanl();
-	//	delay_ms(4);
+		#endif
   }
 }
 void USART_Configuration()

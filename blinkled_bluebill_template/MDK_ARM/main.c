@@ -67,10 +67,10 @@ int main(void)
   while (1)
   {  
     GPIO_SetBits(GPIOB, GPIO_Pin_12|GPIO_Pin_13);                
-    Delay(0xFFFFF);
+    Delay(0xFFFFFF);
 		cnt++;
     GPIO_ResetBits(GPIOB, GPIO_Pin_12|GPIO_Pin_13);
-    Delay(0xFFFFF);
+    Delay(0xFFFFFF);
 		TIM2->CCR1 = 50;
   }
 }
