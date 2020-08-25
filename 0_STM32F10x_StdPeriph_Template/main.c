@@ -83,7 +83,7 @@ void Delay(__IO uint32_t nCount);
 //#else
 //#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 //#endif /* __GNUC__ */
-
+uint16_t cnt;
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -125,10 +125,10 @@ GPIO_Configuration();
   /* Infinite loop */
   while (1)
   {
-		    GPIO_SetBits(GPIOB, GPIO_Pin_12|GPIO_Pin_13);                
+		    GPIO_SetBits(GPIOC, GPIO_Pin_12|GPIO_Pin_13);                
     Delay(0xFFFFF);
-		//cnt++;
-    GPIO_ResetBits(GPIOB, GPIO_Pin_12|GPIO_Pin_13);
+		cnt++;
+    GPIO_ResetBits(GPIOC, GPIO_Pin_12|GPIO_Pin_13);
     Delay(0xFFFFF);
   }
 }
@@ -142,7 +142,7 @@ void GPIO_Configuration(void)
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12|GPIO_Pin_13;            //D1  D2
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOB, &GPIO_InitStructure);  
+    GPIO_Init(GPIOC, &GPIO_InitStructure);  
 }
 
 

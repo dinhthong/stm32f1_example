@@ -1,9 +1,12 @@
 /*
 	On-board STM32F103C8T6 LED toggle
 */
-#define BLUE_PILL 0
+
 #include "stm32f10x.h"
 #include "common.h"
+
+#define BLUE_PILL 1
+#define DELAY_PERIOD 100 
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -20,8 +23,6 @@ USART_InitTypeDef USART_InitStructure;
 
 int main(void)
 {
-	
-//  SysTick_Config(SystemCoreClock/1000000);
 	delay_init(72);
 //	USART_Configuration();
 	#if (BLUE_PILL)
@@ -43,14 +44,14 @@ int main(void)
   {	
 		#if (BLUE_PILL)
 		GPIO_SetBits(GPIOC, GPIO_Pin_13);
-		delay_ms(1000);
+		delay_ms(DELAY_PERIOD);
 		GPIO_ResetBits(GPIOC, GPIO_Pin_13);
-		delay_ms(1000);
+		delay_ms(DELAY_PERIOD);
 		#else
 		GPIO_SetBits(GPIOB, GPIO_Pin_12);
-		delay_ms(1000);
+		delay_ms(DELAY_PERIOD);
 		GPIO_ResetBits(GPIOB, GPIO_Pin_12);
-		delay_ms(1000);
+		delay_ms(DELAY_PERIOD);
 		#endif
   }
 }
